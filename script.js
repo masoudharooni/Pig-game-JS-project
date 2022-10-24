@@ -1,10 +1,15 @@
 'use strict';
 const rollBtn = document.querySelector('.btn--roll');
 const diceImageElement = document.querySelector('img.dice');
-const score0El = document.getElementById('score--0');
-const score1El = document.getElementById('score--1');
-let current0El = document.getElementById('current--0');
-let current1El = document.getElementById('current--1');
+const totalScoreEl = [
+    document.getElementById('score--0'),
+    document.getElementById('score--1')
+];
+const currentScoreEl = [
+    document.getElementById('current--0'),
+    document.getElementById('current--1')
+];
+let currentScoreNum = [0, 0];
 let activePlayer = 0;
 const playersEl = document.querySelectorAll('.player');
 const switchPlayer = function () {
@@ -23,21 +28,11 @@ rollBtn.addEventListener('click', function () {
     const diceImagePath = `img/dice-${diceNumber}.png`;
     diceImageElement.attributes.src.value = diceImagePath;
     if (diceNumber != 1) {
-        if (activePlayer === 0) {
-            const current0Num = Number(current0El.textContent) + diceNumber;
-            current0El.textContent = current0Num;
-        } else if (activePlayer === 1) {
-            const current1Num = Number(current1El.textContent) + diceNumber;
-            current1El.textContent = current1Num;
-        }
+        currentScoreNum[activePlayer] = Number(currentScoreEl[activePlayer].textContent) + diceNumber;
+        currentScoreEl[activePlayer].textContent = currentScoreNum[activePlayer];
     } else {
-        if (activePlayer === 0) {
-            const current0Num = 0;
-            current0El.textContent = current0Num;
-        } else if (activePlayer === 1) {
-            const current1Num = 0;
-            current1El.textContent = current1Num;
-        }
+        currentScoreNum[activePlayer] = 0;
+        currentScoreEl[activePlayer].textContent = currentScoreNum[activePlayer];
         switchPlayer();
     }
 });
