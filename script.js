@@ -3,6 +3,7 @@ const winnerScore = 10;
 const rollBtn = document.querySelector('.btn--roll');
 const holdBtn = document.querySelector('.btn--hold');
 const diceImageElement = document.querySelector('img.dice');
+const newGameBtn = document.querySelector('.btn--new');
 const totalScoreEl = [
     document.getElementById('score--0'),
     document.getElementById('score--1')
@@ -14,6 +15,9 @@ const currentScoreEl = [
 const clearCurrentScoreNum = function () {
     currentScoreNum[activePlayer] = 0;
     currentScoreEl[activePlayer].textContent = currentScoreNum[activePlayer];
+}
+const playAgain = function () {
+    location.reload();
 }
 let currentScoreNum = [0, 0];
 let activePlayer = 0;
@@ -56,5 +60,10 @@ holdBtn.addEventListener('click', function () {
     }
     if (totalScoreNum >= winnerScore) {
         alert('You win, click OK button to start a now game :D');
+        playAgain();
     }
+});
+
+newGameBtn.addEventListener('click', function () {
+    playAgain();
 });
