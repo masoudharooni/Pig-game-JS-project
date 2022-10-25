@@ -49,8 +49,12 @@ holdBtn.addEventListener('click', function () {
     if (currentScoreNum[activePlayer] === 0) {
         alert('Roll dice!');
     } else {
-        totalScoreEl[activePlayer].textContent = totalScoreNum + currentScoreNum[activePlayer];
+        totalScoreNum = totalScoreNum + currentScoreNum[activePlayer];
+        totalScoreEl[activePlayer].textContent = totalScoreNum;
         clearCurrentScoreNum();
         switchPlayer();
+    }
+    if (totalScoreNum >= winnerScore) {
+        alert('You win, click OK button to start a now game :D');
     }
 });
